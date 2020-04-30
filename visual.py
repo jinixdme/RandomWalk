@@ -2,26 +2,30 @@ import matplotlib.pyplot as plt
 
 from random_walk import RandomWalk
 
-# Keep making new walks, as long as the program is active.
+# Keep making new walks, as long as the program is active
 while True:
     # Make a random walk, and plot the points.
-    rw = RandomWalk(5000)
+    rw = RandomWalk(50_000)
     rw.fill_walk()
     
-    # Set the size of the plotting window.
-    plt.figure(dpi=128, figsize=(10, 6))
-    
+    # Plot the points in the walk
+    plt.style.use('classic')
+    # Make the size fit to the screen
+    fig, ax = plt.subplots(figsize=(10, 6), dpi=128)
+
+    # Coloring the points according to their position
     point_numbers = list(range(rw.num_points))
-    plt.plot(rw.x_values, rw.y_values, linewidth=1)
+    # Adjust the size of each dot for a large number of points
+    ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues, 
+        edgecolors='none', s=1)
         
-    # Emphasize the first and last points.
-    plt.scatter(0, 0, c='green', edgecolors='none', s=75)
-    plt.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none',
-        s=75)
+    # Emphasize the first and last points
+    ax.scatter(0, 0, c='green', edgecolors='none', s=65)
+    ax.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none', s=65)
         
-    # Remove the axes.
-    plt.axes().get_xaxis().set_visible(False)
-    plt.axes().get_yaxis().set_visible(False)
+    # Remove the axes
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
         
     plt.show()
     
