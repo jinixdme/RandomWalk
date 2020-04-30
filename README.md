@@ -11,3 +11,5 @@ Sample
 ```bash
 $ python3 visual.py
 ```
+
+Example outputs: https://github.com/jinixdme/RandomWalk/wiki
